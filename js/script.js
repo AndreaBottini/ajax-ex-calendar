@@ -19,7 +19,6 @@ $(document).ready(function() {
     var thisWeekDay = moment(i + '-' + month + '-' + year, 'D-MM-YYYY');
     console.log(thisWeekDay);
 
-
     console.log(thisWeekDay.format('ddd'));
 
     var source = $("#entry-template").html();
@@ -47,23 +46,23 @@ $(document).ready(function() {
 //   ]
 // }
 // FAcciamo la chiamata, ci restituisce un oggetto.
-// Creo un ciclo e controllo per
+// Creo un ciclo e controllo l'oggetto
   $.ajax( {
     url: 'https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=0',
     method: 'GET',
     success: function (data, response) {
       console.log(data);
-    for (var i = 0; i < data.response.length; i++) {
-      console.log(i);
-    }
-    $('.days li').each(function() {
-    //"date": "2018-01-06" == dataVacanza
-    var dataVacanza = $(this).children('.data-completa').text();
-    });
+      $('.days li').each(function() {
+        //"date": "2018-01-06" == dataVacanza
+        var dataVacanza = $(this).children('.data-completa').text();
+        for (var i = 0; i < data.response.length.date; i++) {
+          data.response.length.date == dataVacanza
+          console.log(data.response.length.date);
+        }
+      });
     },
     error: function (data, response) {
       alert('Errore del server. Correggi!')
     }
   });
-
 });
