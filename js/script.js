@@ -52,14 +52,18 @@ $(document).ready(function() {
     method: 'GET',
     success: function (data, response) {
       console.log(data);
-      $('.days li').each(function() {
         //"date": "2018-01-06" == dataVacanza
         var dataVacanza = $(this).children('.data-completa').text();
-        for (var i = 0; i < data.response.length.date; i++) {
-          data.response.length.date == dataVacanza
-          console.log(data.response.length.date);
+        for (var i = 0; i < data.response[i]; i++) {
+          console.log(data.response[i]);
+          var element = data.response[i];
+          $('.days li').each(function() {
+            if (element == dataVacanza) {
+              $('data-completa').addClass('red')
+            }
+          });
         }
-      });
+
     },
     error: function (data, response) {
       alert('Errore del server. Correggi!')
