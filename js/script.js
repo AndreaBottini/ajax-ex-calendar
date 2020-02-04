@@ -54,7 +54,7 @@ $(document).ready(function() {
       console.log(data);
         //"date": "2018-01-06" == dataVacanza
         var dataVacanza = $(this).children('.data-completa').text();
-        for (var i = 0; i < data.response[i]; i++) {
+        for (var i = 0; i < data.response; i++) {
           console.log(data.response[i]);
           var element = data.response[i];
           $('.days li').each(function() {
