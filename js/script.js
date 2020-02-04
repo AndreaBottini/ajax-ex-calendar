@@ -17,9 +17,9 @@ $(document).ready(function() {
     var month = dataDiPartenza.format('MM');
     var year = dataDiPartenza.format('YYYY');
     var thisWeekDay = moment(i + '-' + month + '-' + year, 'D-MM-YYYY');
-    console.log(thisWeekDay);
-
-    console.log(thisWeekDay.format('ddd'));
+    // console.log(thisWeekDay);
+    //
+    // console.log(thisWeekDay.format('ddd'));
 
     var source = $("#entry-template").html();
     var template = Handlebars.compile(source);
@@ -53,13 +53,17 @@ $(document).ready(function() {
     success: function (data, response) {
       console.log(data);
         //"date": "2018-01-06" == dataVacanza
-        var dataVacanza = $(this).children('.data-completa').text();
-        for (var i = 0; i < data.response; i++) {
+
+        for (var i = 0; i < data.response.length; i++) {
           console.log(data.response[i]);
-          var element = data.response[i];
+          // console.log($('data-completa'));
+          var element = data.response.length[i];
           $('.days li').each(function() {
-            if (element == dataVacanza) {
-              $('data-completa').addClass('red')
+            var dataVacanza = $(this).children('data-completa').text();
+            if (dataVacanza == element) {
+              // $(this).addClass('red');
+              console.log('prova');
+              // $(this).append(html)
             }
           });
         }
