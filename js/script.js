@@ -6,7 +6,7 @@
 // 3. Chiedere all’api quali sono le festività per il mese scelto
 // 4. Evidenziare le festività nella lista
 $(document).ready(function() {
-  var dataDiPartenza = moment().year('2018').date('0').day('1')
+  var dataDiPartenza = moment().year('2018').date('1').day('1')
   console.log(dataDiPartenza);
   // moment("2012-02", "YYYY-MM").daysInMonth()
   // dataDiPartenza.daysInMonth()
@@ -17,7 +17,7 @@ $(document).ready(function() {
     var month = dataDiPartenza.format('MM');
     var year = dataDiPartenza.format('YYYY');
     var thisWeekDay = moment(i + '-' + month + '-' + year, 'D-MM-YYYY');
-    // console.log(thisWeekDay);
+    console.log(thisWeekDay);
     //
     // console.log(thisWeekDay.format('ddd'));
 
@@ -54,7 +54,6 @@ $(document).ready(function() {
       console.log(data);
         //"date": "2018-01-06" == dataVacanza
 
-
         for (var i = 0; i < data.response.length; i++) {
           var dataCorrente = data.response;
           console.log(dataCorrente);
@@ -65,8 +64,9 @@ $(document).ready(function() {
           console.log(dataSpecifica, nomeSpecifico);
           $('.days li').each(function() {
             var dataVacanza = $(this).children('.data-completa').text();
-            if (dataVacanza == dataSpecifica )  {
+            if (dataVacanza == dataSpecifica)  {
               $(this).addClass('red')
+              $(this).find('.nome-festivita').append(element.name)
             }
           });
         }
@@ -77,6 +77,10 @@ $(document).ready(function() {
     }
   });
 });
+
+
+
+
 
 // // var array = [
 // //   {
