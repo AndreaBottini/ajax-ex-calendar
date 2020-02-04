@@ -6,6 +6,20 @@
 // 3. Chiedere all’api quali sono le festività per il mese scelto
 // 4. Evidenziare le festività nella lista
 $(document).ready(function() {
+  var mese = 0;
+  console.log(mese);
+  var anno = 2018;
+  console.log(anno);
+
+  $('.next').click(function() {
+    console.log('qunado clicco funziona?');
+  })
+  $('.prev').click(function() {
+    console.log('qunado clicco funziona all\'indietro?');
+  })
+
+
+
   var dataDiPartenza = moment().year('2018').date('1').day('1')
   console.log(dataDiPartenza);
   // moment("2012-02", "YYYY-MM").daysInMonth()
@@ -18,12 +32,9 @@ $(document).ready(function() {
     var year = dataDiPartenza.format('YYYY');
     var thisWeekDay = moment(i + '-' + month + '-' + year, 'D-MM-YYYY');
     console.log(thisWeekDay);
-    //
-    // console.log(thisWeekDay.format('ddd'));
 
     var source = $("#entry-template").html();
     var template = Handlebars.compile(source);
-
     var context = {
       day: i,
       weekday: thisWeekDay.format('ddd'),
@@ -32,50 +43,36 @@ $(document).ready(function() {
       var html = template(context);
       $('.days').append(html)
   }
-//   {
-//   "success": true,
-//   "response": [
-//       {
-//           "name": "Capodanno",
-//           "date": "2018-01-01"
-//       },
-//       {
-//           "name": "Epifania",
-//           "date": "2018-01-06"
-//       }
-//   ]
-// }
 // FAcciamo la chiamata, ci restituisce un oggetto.
 // Creo un ciclo e controllo l'oggetto
-  $.ajax( {
-    url: 'https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=0',
-    method: 'GET',
-    success: function (data, response) {
-      console.log(data);
-        //"date": "2018-01-06" == dataVacanza
-
-        for (var i = 0; i < data.response.length; i++) {
-          var dataCorrente = data.response;
-          console.log(dataCorrente);
-          var element = dataCorrente[i];
-          console.log(element);
-          var dataSpecifica = element.date;
-          var nomeSpecifico = element.name;
-          console.log(dataSpecifica, nomeSpecifico);
-          $('.days li').each(function() {
-            var dataVacanza = $(this).children('.data-completa').text();
-            if (dataVacanza == dataSpecifica)  {
-              $(this).addClass('red')
-              $(this).find('.nome-festivita').append(element.name)
-            }
-          });
-        }
-
-    },
-    error: function (data, response) {
-      alert('Errore del server. Correggi!')
+$.ajax( {
+  url: 'https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=0',
+  method: 'GET',
+  success: function (data, response) {
+    console.log(data);
+    for (var i = 0; i < data.response.length; i++) {
+      var dataCorrente = data.response;
+      console.log(dataCorrente);
+      var element = dataCorrente[i];
+      console.log(element);
+      var dataSpecifica = element.date;
+      var nomeSpecifico = element.name;
+      console.log(dataSpecifica, nomeSpecifico);
+      $('.days li').each(function() {
+        var dataVacanza = $(this).children('.data-completa').text();
+        if (dataVacanza == dataSpecifica) {
+          $(this).addClass('red');
+          $(this).find('.nome-festivita').append(element.name);
+          }
+      });
     }
-  });
+  },
+  error: function (data, response) {
+    alert('Errore del server. Correggi!')
+  }
+});
+
+
 });
 
 
