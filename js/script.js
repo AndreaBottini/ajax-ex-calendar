@@ -54,13 +54,18 @@ $(document).ready(function() {
       console.log(data);
         //"date": "2018-01-06" == dataVacanza
 
+
         for (var i = 0; i < data.response.length; i++) {
-          console.log(data.response[i]);
-          // console.log($('data-completa'));
-          var element = data.response.length[i];
+          var dataCorrente = data.response;
+          console.log(dataCorrente);
+          var element = dataCorrente[i];
+          console.log(element);
+          var dataSpecifica = element.date;
+          var nomeSpecifico = element.name;
+          console.log(dataSpecifica, nomeSpecifico);
           $('.days li').each(function() {
             var dataVacanza = $(this).children('.data-completa').text();
-            if (dataVacanza == element) {
+            if (dataVacanza == dataSpecifica )  {
               $(this).addClass('red')
             }
           });
@@ -72,3 +77,14 @@ $(document).ready(function() {
     }
   });
 });
+
+// // var array = [
+// //   {
+// //     'name': 'gatto'
+// //   },
+//
+//   {
+//     'name': 'cane'
+//   }
+// ]
+//   console.log(array[1]);
