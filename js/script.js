@@ -59,11 +59,9 @@ $(document).ready(function() {
           // console.log($('data-completa'));
           var element = data.response.length[i];
           $('.days li').each(function() {
-            var dataVacanza = $(this).children('data-completa').text();
+            var dataVacanza = $(this).children('.data-completa').text();
             if (dataVacanza == element) {
-              // $(this).addClass('red');
-              console.log('prova');
-              // $(this).append(html)
+              $(this).addClass('red')
             }
           });
         }
